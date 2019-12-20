@@ -1,0 +1,10 @@
+server:
+  service-domain: http://127.0.0.1:8080
+
+pay:
+  alipay:
+    gateway-url: https://openapi.alipay.com/gateway.do
+    appid: zzzzzz
+    app-private-key: zll
+    alipay-public-key: dsfhgfshjgfjgdffd
+    notify-url: ${server.service-domain}/api/alipay/notify
