@@ -32,17 +32,16 @@ public class AlipayServiceImpl implements AlipayService {
     private AlipayClient alipayClient;
 
     @Override
-    public String preCreateOrder(Map<String, String> bizMap) throws AlipayApiException {
+    public AlipayTradePrecreateResponse preCreateOrder(Map<String, String> bizMap) throws AlipayApiException {
         AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();
         request.setBizContent(JSON.toJSONString(bizMap));
         request.setReturnUrl(alipayProperties.getReturnUrl());
         request.setNotifyUrl(alipayProperties.getNotifyUrl());
-        AlipayTradePrecreateResponse precreateResponse = alipayClient.execute(request);
-        return precreateResponse.getBody();
+        return alipayClient.execute(request);
     }
 
     @Override
-    public String preCreateOrder(String orderNo, double amount, String subject, String storeId, String timeoutExpress) throws AlipayApiException {
+    public AlipayTradePrecreateResponse preCreateOrder(String orderNo, double amount, String subject, String storeId, String timeoutExpress) throws AlipayApiException {
         AlipayTradePrecreateModel model = new AlipayTradePrecreateModel();
         model.setOutTradeNo(orderNo);
         model.setTotalAmount(String.valueOf(amount));
@@ -53,13 +52,13 @@ public class AlipayServiceImpl implements AlipayService {
         if (StringUtils.isNotBlank(timeoutExpress)) {
             model.setTimeoutExpress(timeoutExpress);
         }
+
         AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();
         request.setBizModel(model);
         request.setReturnUrl(alipayProperties.getReturnUrl());
         request.setNotifyUrl(alipayProperties.getNotifyUrl());
-        AlipayTradePrecreateResponse precreateResponse = alipayClient.execute(request);
 
-        return precreateResponse.getBody();
+        return alipayClient.execute(request);
     }
 
     @Override

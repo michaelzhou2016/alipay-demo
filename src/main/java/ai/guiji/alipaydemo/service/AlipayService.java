@@ -1,12 +1,13 @@
 package ai.guiji.alipaydemo.service;
 
 import com.alipay.api.AlipayApiException;
+import com.alipay.api.response.AlipayTradePrecreateResponse;
 
 import java.util.Map;
 
 public interface AlipayService {
 
-    String preCreateOrder(Map<String, String> bizMap) throws AlipayApiException;
+    AlipayTradePrecreateResponse preCreateOrder(Map<String, String> bizMap) throws AlipayApiException;
 
     /**
      * @param orderNo: 订单编号
@@ -14,7 +15,7 @@ public interface AlipayService {
      * @param subject: 订单描述
      * @Description: 交易预下单接口 alipay.trade.precreate
      */
-    String preCreateOrder(String orderNo, double amount, String subject, String storeId, String timeoutExpress) throws AlipayApiException;
+    AlipayTradePrecreateResponse preCreateOrder(String orderNo, double amount, String subject, String storeId, String timeoutExpress) throws AlipayApiException;
 
     /**
      * @param orderNo: 订单编号
