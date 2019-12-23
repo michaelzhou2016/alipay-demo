@@ -31,6 +31,7 @@ public class AlipayServiceImpl implements AlipayService {
     @Autowired
     private AlipayClient alipayClient;
 
+    //支付宝预下单接口 alipay.trade.precreate https://docs.open.alipay.com/194/106078/
     @Override
     public AlipayTradePrecreateResponse preCreateOrder(Map<String, String> bizMap) throws AlipayApiException {
         AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();
